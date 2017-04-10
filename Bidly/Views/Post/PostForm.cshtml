@@ -1,7 +1,9 @@
-﻿@model Bidly.ViewModels.PostsFormViewModel
+﻿@using System.Web.UI.WebControls
+@model Bidly.ViewModels.PostsFormViewModel
 
 @{
     ViewBag.Title = "PostForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>PostForm</h2>
@@ -11,35 +13,64 @@
     @Html.ValidationSummary()
     <div class="form-group">
         @Html.LabelFor(m => m.Name)
-        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "What are you selling?" })
         @Html.ValidationMessageFor(m => m.Name)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Description)
-        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Description, new { @class = "form-control", @placeholder = "Write a description about your product, Max 255 words" })
         @Html.ValidationMessageFor(m => m.Description)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Duration)
-        @Html.TextBoxFor(m => m.Duration, new { @class = "form-control", @Value = "01 Jan 2000" })
-        @Html.ValidationMessageFor(m => m.Duration)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.CategoryId)
         @* textboxfor has a few overloads and as a second string you can pass a format string for the date in this instance*@
         @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "Id", "Name"), "Select Below Types", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.CategoryId)  
+        @Html.ValidationMessageFor(m => m.CategoryId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address)
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "99 James st, Etobicoke ON" })
+        @Html.ValidationMessageFor(m => m.Address)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Duration)
+        @Html.TextBoxFor(m => m.Duration, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker", @placeholder = "01-01-2017" })
+        @Html.ValidationMessageFor(m => m.Duration)
     </div>
     @Html.HiddenFor(m => m.Id)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
 }
 
-@section scripts
-{
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "yy-mm-dd",
+                changeYear: true,
+                showOn: "button",
+                buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                buttonImageOnly: true
+            });
+            //.next("button").button({
+            //    icons: { primary: "ui-icon-calendar" },
+            //    label: "Select a date",
+            //    text: false
+            //}).css("display", "inline-block");
+        });
+</script>
+
+    @*<script type="text/javascript">
+    $(function () { // will trigger when the document is ready
+       $('.datepicker').datepicker(); //Initialise any date pickers
+    });
+</script>*@
+}
+

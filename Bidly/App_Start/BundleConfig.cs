@@ -10,6 +10,7 @@ namespace Bidly
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-ui-{version}.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
@@ -18,6 +19,10 @@ namespace Bidly
                         "~/Scripts/typeahead.bundle.js",
                         "~/Scripts/toastr.js"
                         ));
+
+            bundles.Add(new ScriptBundle("~/bundles/datetime").Include(
+                        "~/Scripts/moment*",
+                        "~/Scripts/bootstrap-datetimepicker*"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -36,7 +41,8 @@ namespace Bidly
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/typeahead.css",
-                      "~/Content/toastr.css"
+                      "~/Content/toastr.css",
+                      "~/Content/themes/base/all.css"
                       ));
         }
     }

@@ -25,6 +25,8 @@ namespace Bidly.ViewModels
         public DateTime DateAdded { get; set; }
         [Display(Name = "Till When?")]
         [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Duration { get; set; }
 
         [Required]
