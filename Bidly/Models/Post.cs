@@ -21,12 +21,16 @@ namespace Bidly.Models
         [Required]
         public byte CategoryId { get; set; }
         public DateTime DateAdded { get; set; }
+
         [Display(Name = "Till When?")]
         [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Duration { get; set; }
 
         [Required]
         [Display(Name = "Where?")]
+        [StringLength(255)]
         public string Address { get; set; }
     }
 }

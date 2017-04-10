@@ -13,7 +13,7 @@ namespace Bidly
 
             //apply the authorize tag globally so restricting all controller actions to customers who are logged in ONLY
 
-            filters.Add(new AuthorizeAttribute());
+            //filters.Add(new AuthorizeAttribute());
         }
     }
 }
